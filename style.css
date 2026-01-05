@@ -1,0 +1,444 @@
+/* --- CSS VARIABLES --- */
+:root {
+    /* Warna Tema Gelap/Deep untuk menonjolkan efek kaca */
+    --bg-gradient-1: #0f2027;
+    --bg-gradient-2: #203a43;
+    --bg-gradient-3: #2c5364;
+    --accent-glass: #ffffff;
+    --accent-green: #4ade80; /* Hijau Neon iOS */
+    --text-main: #1a1a1a;
+    --text-secondary: #555555;
+}
+
+/* --- RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
+    overflow-x: hidden;
+    /* Latar belakang alam yang gelap dan elegan */
+    background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2), var(--bg-gradient-3));
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Background Image Overlay (Gambar Sayur Halus) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('view\ perkebunan.png') no-repeat center center/cover;
+    opacity: 0.15; /* Transparansi agar tidak mengganggu teks */
+    z-index: -2;
+}
+
+/* --- LIQUID BLOBS ANIMATION (Background Effects) --- */
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: float 10s infinite alternate;
+}
+.blob-1 { top: 10%; left: 10%; width: 300px; height: 300px; background: #2ecc71; animation-delay: 0s; }
+.blob-2 { bottom: 20%; right: 10%; width: 400px; height: 400px; background: #27ae60; animation-delay: -5s; }
+.blob-3 { top: 40%; left: 60%; width: 250px; height: 250px; background: #82e0aa; animation-duration: 15s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+/* --- UTILITIES --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; border-radius: 12px; }
+
+/* --- THE LIQUID GLASS CLASS --- */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.65); /* Semi-transparan putih */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 24px; /* Sudut sangat membulat (iOS style) */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* --- NAVBAR --- */
+header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 100;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 30px;
+
+    /* Navbar juga menggunakan efek kaca */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 50px; /* Pill shape */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 50;
+    color: #eaeceb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.logo img{
+    width: 60px;
+    height: 60px;
+    margin-top: 5px;
+}
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    font-weight: 500;
+    color: #ffffff;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #27ae60;
+}
+
+.nav-btn {
+    padding: 10px 25px;
+    border-radius: 30px;
+    background: #27ae60;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+    transition: transform 0.2s;
+}
+
+.nav-btn:hover { transform: scale(1.05); background: #219150; }
+
+.hamburger { display: none; cursor: pointer; }
+.bar { width: 25px; height: 3px; background: #333; margin: 5px 0; border-radius: 2px; }
+
+/* --- HERO SECTION --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 100px; /* Space for fixed nav */
+    gap: 4rem;
+}
+
+.hero-content {
+    flex: 1;
+    color: white; /* Text putih di background gelap */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+.btn-glass {
+    padding: 15px 40px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-card {
+    width: 400px;
+    height: 500px;
+    position: relative;
+    transform: rotate(-3deg);
+    transition: 0.5s;
+}
+
+.hero-card:hover { transform: rotate(0) scale(1.02); }
+
+.hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.4);
+}
+
+/* --- FEATURES --- */
+.features { padding: 4rem 0; }
+.section-title { text-align: center; margin-bottom: 4rem; color: white; }
+.section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.section-title p { opacity: 0.8; }
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    padding: 2.5rem;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.8); /* Lebih solid saat hover */
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- PRODUCTS --- */
+.products { padding: 4rem 0; }
+
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.2);
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: white;
+    color: #27ae60;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s;
+}
+
+.product-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.product-img {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    border-radius: 20px 20px 0 0; /* Rounded top */
+}
+
+.product-card:hover .product-img img { transform: scale(1.1); }
+
+.product-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #27ae60;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.product-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #e67e22;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.btn-buy {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #27ae60;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1rem;
+}
+
+.btn-buy:hover { background: #219150; }
+
+/* --- FOOTER --- */
+footer {
+    padding: 4rem 0 2rem;
+    color: white;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-col { text-align: left; flex: 1; min-width: 200px; }
+.footer-col h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #2ecc71; }
+.footer-col a { display: block; margin-bottom: 0.5rem; opacity: 0.8; transition: 0.1s; }
+.footer-col a:hover { opacity: 1; padding-left: 5px; color: #2ecc71; }
+
+/* --- FLOATING WA --- */
+.float-wa {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25D366;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+    z-index: 200;
+    transition: 0.3s;
+    /* Glass border effect */
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.float-wa:hover { transform: scale(1.1) rotate(15deg); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    .hero { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
+    .hero-content h1 { font-size: 3rem; }
+    .hero-card { width: 100%; max-width: 400px; transform: none; }
+    .hero-card:hover { transform: scale(1.02); }
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: block; z-index: 101; }
+    
+    nav {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(30px);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        border-radius: 0;
+        transform: translateY(-100%);
+        transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    nav.active { transform: translateY(0); }
+
+    .nav-links { flex-direction: column; gap: 1.5rem; font-size: 1.2rem; }
+    .nav-btn { background: transparent; color: #27ae60; border: 2px solid #27ae60; }
+    .nav-btn:hover { background: #27ae60; color: white; }
+    
+    header { width: 100%; top: 0; background: transparent; padding: 15px; pointer-events: none; }
+    /* Hamburger harus clickable */
+    .hamburger { pointer-events: auto; }
+    .logo { pointer-events: auto; color: white; }
+}
